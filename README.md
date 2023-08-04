@@ -1,4 +1,4 @@
-## Cretae table with 'id' AUTO INCREMENT 'name' and 'email' use UNIQUE KEY  
+### Cretae table with 'id' AUTO INCREMENT 'name' and 'email' use UNIQUE KEY  
 
 ```
 CREATE TABLE `users` (
