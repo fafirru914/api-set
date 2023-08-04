@@ -1,3 +1,5 @@
+## Cretae table with 'id' AUTO INCREMENT 'name' and 'email' use UNIQUE KEY  
+
 ```
 CREATE TABLE `users` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
