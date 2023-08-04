@@ -1,3 +1,4 @@
+```
 CREATE TABLE `users` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(11) DEFAULT NULL,
@@ -9,4 +10,4 @@ CREATE TABLE `users` (
   UNIQUE KEY `email_uniq` (`Email`)
   UNIQUE KEY `name_uniq` (`Name`)
 )
-
+```
