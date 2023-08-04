@@ -13,3 +13,13 @@ CREATE TABLE `users` (
   UNIQUE KEY `name_uniq` (`Name`)
 )
 ```
+
+### Password hashing use bcrypt :
+- link : https://www.npmjs.com/package/bcrypt 
+
+### JsonWebToken (JWT) :
+- link : https://www.npmjs.com/package/jsonwebtoken
+
+### connect to batabase using mysql npm (BTW gw pake docker untuk database)
+- link docker documentation : https://www.docker.com/
+- link mysql npm : https://www.npmjs.com/package/mysql
