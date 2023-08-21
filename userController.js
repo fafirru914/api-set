@@ -1,12 +1,14 @@
 const { createConnection } = require("./utils/dbUtils.js");
 const { hashPassword } = require("./utils/bcryptUtils.js");
 const { generateToken } = require("./utils/jwtUtils.js");
+const { queries } =  require("./utils/queriesUtils.js")
+
+const connection = createConnection();
 
 function getAllUser() {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
-    const query = "SELECT id,name,email FROM users";
+    const query = queries.getAllUsers;
 
     connection.query(query, (error, result) => {
       if (error) {
@@ -14,22 +16,18 @@ function getAllUser() {
       } else {
         resolve(result);
       }
-
-      connection.end();
     });
   });
 }
 
 function addUser(name, email, password) {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
     hashPassword(password)
       .then((hashedPassword) => {
-        const query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+        const query = queries.addUser;
 
         connection.query(query, [name, email, hashedPassword], (error, result) => {
-          connection.end();
 
           if (error) {
             console.error("Error adding user:", error);
@@ -56,9 +54,8 @@ function addUser(name, email, password) {
 
 function getUserById(id) {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
-    const query = "SELECT id,name,email FROM users WHERE id = ?";
+    const query = queries.getUserById;
 
     connection.query(query, [id], (error, result) => {
       if (error) {
@@ -70,17 +67,14 @@ function getUserById(id) {
           resolve(result[0]);
         }
       }
-
-      connection.end();
     });
   });
 }
 
 function getUserByEmail(email) {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
-    const query = "SELECT id,name,email FROM users WHERE email = ?";
+    const query = queries.getUserByEmail;
 
     connection.query(query, [email], (error, result) => {
       if (error) {
@@ -90,19 +84,16 @@ function getUserByEmail(email) {
       } else {
         resolve(result[0]);
       }
-
-      connection.end();
     });
   });
 }
 
 function updateUserById(id, name, email, password) {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
     hashPassword(password)
       .then((hashedPassword) => {
-        const query = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?";
+        const query = queries.updateUserById;
 
         connection.query(query, [name, email, hashedPassword, id], (error, result) => {
           console.log(result);
@@ -120,8 +111,6 @@ function updateUserById(id, name, email, password) {
 
             resolve({ message: "User updated", id: result.insertId, token });
           }
-
-          connection.end();
         });
       })
       
@@ -134,9 +123,8 @@ function updateUserById(id, name, email, password) {
 
 function deleteUserById(id) {
   return new Promise((resolve, reject) => {
-    const connection = createConnection();
 
-    const query = "DELETE FROM users WHERE id = ?";
+    const query = queries.deleteUserById
 
     connection.query(query, [id], (error, result) => {
       if (error) {
@@ -146,8 +134,6 @@ function deleteUserById(id) {
       } else {
         resolve({ message: "User deleted" });
       }
-
-      connection.end();
     });
   });
 }
