@@ -1,7 +1,8 @@
 const { createConnection } = require("./utils/dbUtils.js");
 const { hashPassword } = require("./utils/bcryptUtils.js");
 const { generateToken } = require("./utils/jwtUtils.js");
-const { queries } =  require("./utils/queriesUtils.js")
+const { queries } =  require("./utils/queriesUtils.js");
+const { promise, reject } = require("bcrypt/promises.js");
 
 const connection = createConnection();
 
